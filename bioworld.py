@@ -11,6 +11,22 @@ except ModuleNotFoundError:
 # - implement ascii art
 
 
+# TODO:
+# - add a dict to store and access art
+# - add functions representing abilities, maybe store in dict too
+# - make enemy class
+ART = {
+    "stats": "hp [red]{}[/red]   pow [cyan]{}[/cyan]",
+    "phenemy": """
+    [cyan]\\\\\\       ///
+
+      --     --
+     >[red]%%[/red]<   >[red]%%[/red]<
+      --     --
+
+      >=======<[/cyan]
+    """
+}
 
 
 def render_game(state):
