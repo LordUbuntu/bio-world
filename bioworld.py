@@ -1,41 +1,31 @@
-# try to load rich module for colours if available
-try:
-    import rich
-    print = rich.print
-except ModuleNotFoundError:
-    pass
 # TODO:
-# - store enemy and ally art somewhere (probably some arrays)
 # - find a way to store game data
 # - implement gameplay
 # - implement ascii art
-
-
-# TODO:
 # - add a dict to store and access art
 # - add functions representing abilities, maybe store in dict too
 # - make enemy class
 ART = {
-    "stats": "hp [red]{}[/red]   pow [cyan]{}[/cyan]",
-    "phenemy": """
-    [cyan]\\\\\\       ///
+    "enemy": """
+    \\\\\\       ///
 
       --     --
-     >[red]%%[/red]<   >[red]%%[/red]<
+     >%%<   >%%<
       --     --
 
-      >=======<[/cyan]
+      >=======<
     """
 }
 
 
 def render_game(state):
-    # render stats
+    # render player stats
     print('=' * 20)
-    print("health: [red]{}[/red]   power: [cyan]{}[/cyan]"\
-            .format(state["health"], state["power"]))
+    print("")
     # render art
     print('=' * 20)
+    # render enemy stats
+    print("enemy stats")
     # show choices
     print('=' * 20)
     print('=' * 20)
