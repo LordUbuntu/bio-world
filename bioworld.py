@@ -1,3 +1,4 @@
+# NOTE: screen must be at least 56 char wide and 12 char tall, run by this assumption
 # TODO:
 # - find a way to store game data
 # - implement gameplay
@@ -17,8 +18,11 @@ ART = {
     |____/___\___/  \_/\_/  \___/|_| \_\_____|____/
 
                ==========================
-                            .
+                    1   New Game
+                    2   Load Game
+                    3   Quit
                ==========================
+                            .
     """,
     "enemy": """
     \\\\\\       ///
@@ -43,15 +47,14 @@ def render_menu():
 
 def render_game(state):
     # render player stats
-    print('=' * 20)
-    print("")
-    # render art
-    print('=' * 20)
-    # render enemy stats
+    print('=' * 25)
+    print("player stats")
+    # render game art
+    print('=' * 25)
+    print(ART["enemy"])
+    # render enemy stats (if applicable)
     print("enemy stats")
-    # show choices
-    print('=' * 20)
-    print('=' * 20)
+    print('=' * 25)
 
 
 def bioworld():
