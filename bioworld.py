@@ -7,6 +7,7 @@
 # - add functions representing abilities, maybe store in dict too
 # - make enemy class
 import os
+from sys import exit
 
 
 ART = {
@@ -57,26 +58,68 @@ def render_game(state):
     print('=' * 25)
 
 
+def end():
+    exit("Thanks for playing")
+
+
+def win(
+
+
 def bioworld():
-    render_menu()
-    input()
-    clear()
+    # begin gamestate
+    state = None  # default start gamestate goes here
+    running = True
     # render menu
-    # get player choice for menu
-        # if quit, clear screen and terminate program
-        # if load game
-            # load game data from file
-            # render game
-        # if new game, start a new game
-            # while in game
-                # render game
-    render_game({"health": 10, "power": 5})
-                # get user input
-    input()  # placeholder for now
-                    # perform action based on user input
+    render_menu()
+    choice = int(input())  # get player choice for menu
     clear()
-    # win condition: turn the 7 machine lords into bio-machine hybrids
-    # lose condition: lose the bio-virus/entity within you (health <= 0)
+        # if quit, clear screen and terminate program
+    if choice == 3:
+        clear()
+        end()
+        # if load game
+    if choice == 2:
+            # load game state from file
+        with open("save.txt", 'r') as file:
+            state = read_data(file)
+        # if new game, start a new game
+    if choice == 1:
+            # use default state
+        continue
+            # while in game
+    while running:
+                # render game
+        render_game(state)
+                # get user input
+        # NOTE:
+        # - attack will use
+        choice = int(input("""
+        1 - attack   (10 biomass)
+        2 - defend   (5  biomass)
+        3 - biospore (30 biomass)
+        """))
+                    # perform action based on user input
+                    # NOTE: the assumption is that all actions in the game are combat choices
+        if choice == 3:
+            if state["player"].bm >= 30:
+                # merge enemy robot with biomass to make biomachine
+                pass
+        if choice == 2:
+            if state["player"].bm >= 5:
+                # defend some amount of enemy attack based on amount of biomass
+                pass
+        if choice == 1:
+            if state["player"]bm >= 10:
+                # attack some amount of hp based on amount of biomass
+                pass
+        # clear screen for next render
+        clear()
+        # win condition: turn the 7 machine lords into biomachine hybrids
+        if state["biomachines"] == 7:
+            win(True)
+        # lose condition: lose the bio-virus/entity within you (health <= 0)
+        if state["player"].hp <= 0:
+            win(False)
 
 
 
