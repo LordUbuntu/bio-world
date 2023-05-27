@@ -18,5 +18,5 @@ All you need to play the game is a Python 3 interpreter on your system. From the
 
 ## Lessons Learned
 
-I should start these projects sooner.
 I should have begun with a design instead of figuring it out as I went.
+I did well to avoid scope-creep by keeping things simple and features limited.
