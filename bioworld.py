@@ -128,8 +128,7 @@ def bioworld():
             state = read_data(file)
         # if new game, start a new game
     if choice == 1:
-            # use default state
-        continue
+        state = state
             # while in game
     while running:
                 # render game
@@ -151,7 +150,7 @@ def bioworld():
                 # defend some amount of enemy attack based on amount of biomass
                 pass
         if choice == 1:
-            if state["player"]bm >= 10:
+            if state["player"].bm >= 10:
                 # attack some amount of hp based on amount of biomass
                 pass
         # clear screen for next render
