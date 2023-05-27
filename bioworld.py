@@ -1,15 +1,14 @@
-# NOTE: screen must be at least 56 char wide and 12 char tall, run by this assumption
 # TODO:
 # - find a way to store game data
 # - implement gameplay
 # - implement ascii art
-# - add a dict to store and access art
-# - add functions representing abilities, maybe store in dict too
 # - make enemy class
+# - make player class
 import os
 from sys import exit
 
 
+# NOTE: screen must be at least 56 char wide and 12 char tall, run by this assumption
 ART = {
     "menu": r"""
      ____ ___ _____        _____  ____  _     ____
@@ -36,7 +35,8 @@ You defeated all 7 machine lords, fusing biology and
 machine into an exciting new chimera!! Now flowers can
 bloom from your mechanic limbs in the new LIVING world
 you've helped grow out of this once hollow and mechanical
-one!
+one! You're overcome with joy at what new things LIFE
+will bring to this changing and caring world!
 
 Keep growing, bio bot!
     """,
@@ -101,9 +101,16 @@ def win(condition):
         exit(ART["lose"])
 
 
+# NOTE:
+# - game consists of just boss battles (no other kind of scene)
+# - gameplay consists of fighting enemies until you have defeated (make bio of) 7 machines
 def bioworld():
     # begin gamestate
-    state = None  # default start gamestate goes here
+    state = {
+        "player": Player(),  # TODO: player class with hp and bm
+        "enemy": Enemy(),  # TODO: varied enemy class with hp and ma
+        "biomachines": 0,
+    }
     running = True
     # render menu
     render_menu()
@@ -116,6 +123,7 @@ def bioworld():
         # if load game
     if choice == 2:
             # load game state from file
+        # TODO: implement read_data(file)
         with open("save.txt", 'r') as file:
             state = read_data(file)
         # if new game, start a new game
@@ -127,8 +135,6 @@ def bioworld():
                 # render game
         render_game(state)
                 # get user input
-        # NOTE:
-        # - attack will use
         choice = int(input("""
         1 - attack   (10 biomass)
         2 - defend   (5  biomass)
