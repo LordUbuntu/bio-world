@@ -62,7 +62,41 @@ def end():
     exit("Thanks for playing")
 
 
-def win(
+def win(condition):
+    if condition:
+        exit("""
+  ____ ___  _   _  ____ ____      _  _____ ____  _
+ / ___/ _ \| \ | |/ ___|  _ \    / \|_   _/ ___|| |
+| |  | | | |  \| | |  _| |_) |  / _ \ | | \___ \| |
+| |__| |_| | |\  | |_| |  _ <  / ___ \| |  ___) |_|
+ \____\___/|_| \_|\____|_| \_\/_/   \_\_| |____/(_)
+
+You defeated all 7 machine lords, fusing biology and
+machine into an exciting new chimera!! Now flowers can
+bloom from your mechanic limbs in the new LIVING world
+you've helped grow out of this once hollow and mechanical
+one!
+
+Keep growing, bio bot!
+        """)
+    else:
+        exit("""
+  ___  _   _   _   _  ___  _
+ / _ \| | | | | \ | |/ _ \| |
+| | | | |_| | |  \| | | | | |
+| |_| |  _  | | |\  | |_| |_|
+ \___/|_| |_| |_| \_|\___/(_)
+
+The machine lords have won, crushing any hope of a
+biomechanical future! Another day, another cog in the
+machine, another dispensible bot to be replaced in this
+factory world! You did all your could, but now you can
+only watch helpelessly as nothing changes and this
+hollow world goes on unchanging and uncaring! The crusher
+decends upon you as you watch in apathy.
+
+Stay still, poor bot!
+        """)
 
 
 def bioworld():
