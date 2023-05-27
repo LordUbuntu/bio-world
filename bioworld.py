@@ -48,12 +48,12 @@ def render_menu():
 def render_game(state):
     # render player stats
     print('=' * 25)
-    print("player stats")
+    print("STATS\nhp {}  biomass {}".format(state["player"].hp, state["player"].bm))
     # render game art
     print('=' * 25)
-    print(ART["enemy"])
+    print(ART[state["enemy"].name])
     # render enemy stats (if applicable)
-    print("enemy stats")
+    print("ENEMY\nhp {}  machina {}".format(state["enemy"].hp, state["enemy"].ma))
     print('=' * 25)
 
 
