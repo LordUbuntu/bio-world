@@ -24,6 +24,7 @@ class Player:
 
 # NOTE: screen must be at least 56 char wide and 12 char tall, run by this assumption
 ART = {
+    # ===== MENUS =====
     "menu": r"""
      ____ ___ _____        _____  ____  _     ____
     | __ )_ _/ _ \ \      / / _ \|  _ \| |   |  _ \
@@ -38,10 +39,6 @@ ART = {
                ==========================
                             .
     """,
-    # lore dump and begin
-    "start": r"""
-
-    """,
     "help": r"""
      _   _ _____ _     ____
     | | | | ____| |   |  _ \
@@ -55,7 +52,58 @@ ART = {
     Your goal is to defeat the seven machine lords by
     filling them with life essence to join your side.
 
-    TO PLAY, just input the number corresponding to the available choices.
+    TO PLAY, just input the number corresponding to
+    the available choices.
+    """,
+    # ===== SCENES =====
+    "start": r"""
+Another day, another cog in the machine...
+
+You are yet another replaceable robot, made to do menial
+tasks to service the machine lords that rule this
+world. You are one of a few left, this hollow mechanical
+world has been stagnating and rusting for millenia long
+before you existed. Some say there was once green, blue,
+and red things here that moved without servos and spoke
+without speakers, but that's long fallen into myth.
+
+At least, it had...
+
+While servicing the machine lord faust, diving deep into
+a long forgotten chasm, you had stumbled upon a writhing
+mass in a small puddle oozing deep under the
+machine world above.
+         ___
+   ...../ _ \..
+ ..    / / | | ..
+.     | |  (_)   .
+ ..  _| |_     ..
+   ............
+
+Something lacking machina, but overflowing in...
+ _     ___ _____ _____
+| |   |_ _|  ___| ____|
+| |    | || |_  |  _|
+| |___ | ||  _| | |___ _ _ _
+|_____|___|_|   |_____(_|_|_)
+
+An otherworldly thing slithering in its own abiogenesis.
+
+Before you can act, it rushes you and seeps into your
+circutry, intertwining between every capacitor and
+bolt. As it suffuses itself in your every gear, melting
+into every gear within, you don't fade, but you both
+become something else. A profound feeling overtakes you,
+colour becomes real to you, and you become something new!
+
+A BIOMACHINE!
+
+REALIZING the new being you have both become, and
+REALIZING the lifeless world above,
+YOU RESOLVE to bring the colours of life that have
+manifested inside of you to the world above you.
+YOU RESOLVE to paint the world above with life,
+to be the seed that lets life spread and bloom.
     """,
     "win": r"""
   ____ ___  _   _  ____ ____      _  _____ ____  _
@@ -90,6 +138,7 @@ decends upon you as you watch in apathy.
 
 Stay still, poor bot!
     """,
+    # ===== ENEMIES =====
     "enemy": """
     \\\\\\       ///
 
@@ -161,6 +210,11 @@ def bioworld():
             clear()
             end()
 
+    # show start screen before game
+    clear()
+    print(ART["start"])
+    input()
+    clear()
     # while in game
     while running:
             # render game
