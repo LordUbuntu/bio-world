@@ -302,7 +302,6 @@ def bioworld():
                 state["player"] = Player(state["player"].hp * 2, state["player"].bm * 2)
         input()
 
-
         # clear screen for new render
         clear()
 

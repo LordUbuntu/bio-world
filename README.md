@@ -6,9 +6,9 @@ Fight the machine-world and bring the wonder of a bio world to this mechanical o
 ## Features
 
 BIOWORLD includes
-- various enemies
-- ascii art
-- battle system
+- 3 interesting bosses
+- neat storyline
+- straightforward battle system
 
 Not much else, it's a simple game!
 
@@ -20,3 +20,4 @@ All you need to play the game is a Python 3 interpreter on your system. From the
 
 I should have begun with a design instead of figuring it out as I went.
 I did well to avoid scope-creep by keeping things simple and features limited.
+I learned how to better manage gamestate and the challenges of game balance.
