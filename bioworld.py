@@ -184,6 +184,15 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def read(prompt=''):
+    while True:
+        choice = input(prompt)
+        if not choice.isdigit():
+            continue
+        else:
+            return int(choice)
+
+
 def render_game(state):
     # render player stats
     print('=' * 25)
@@ -221,7 +230,7 @@ def bioworld():
     while not running:
         # render menu
         print(ART["menu"])
-        choice = int(input())  # get player choice for menu
+        choice = read()
         clear()
             # if new game, start a new game
         if choice == 1:
@@ -247,11 +256,11 @@ def bioworld():
         render_game(state)
 
         # get user input
-        choice = int(input("""
+        choice = read("""
         1 - attack   (10 biomass)
         2 - defend   (5  biomass)
         3 - biospore (30 biomass)
-        """))
+        """)
 
         # perform action based on user input
         # regenerate machina and biomass
