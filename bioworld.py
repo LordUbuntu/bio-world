@@ -8,6 +8,20 @@ import os
 from sys import exit
 
 
+# dataclasses are structs with flare
+class Enemy:
+    def __init__(self, hp, ma, name):
+        self.hp = hp
+        self.ma = ma  # machina
+        self.name = name  # which enemy this is
+
+
+class Player:
+    def __init__(self, hp, bm):
+        self.hp = hp
+        self.bm = bm  # biomass
+
+
 # NOTE: screen must be at least 56 char wide and 12 char tall, run by this assumption
 ART = {
     "menu": r"""
@@ -69,7 +83,6 @@ Stay still, poor bot!
 }
 
 
-# NOTE: screen must be cleared after each input
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -86,7 +99,7 @@ def render_game(state):
     print('=' * 25)
     print(ART[state["enemy"].name])
     # render enemy stats (if applicable)
-    print("ENEMY\nhp {}  machina {}".format(state["enemy"].hp, state["enemy"].ma))
+    print("\nENEMY\nhp {}  machina {}".format(state["enemy"].hp, state["enemy"].ma))
     print('=' * 25)
 
 
@@ -107,8 +120,8 @@ def win(condition):
 def bioworld():
     # begin gamestate
     state = {
-        "player": Player(),  # TODO: player class with hp and bm
-        "enemy": Enemy(),  # TODO: varied enemy class with hp and ma
+        "player": Player(13, 3),
+        "enemy": Enemy(30, 50, "faust"),
         "biomachines": 0,
     }
     running = True
