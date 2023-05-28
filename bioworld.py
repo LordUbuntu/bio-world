@@ -110,7 +110,7 @@ DEFEAT THE THREE MACHINE LORDS ABOVE!
 | |__| |_| | |\  | |_| |  _ <  / ___ \| |  ___) |_|
  \____\___/|_| \_|\____|_| \_\/_/   \_\_| |____/(_)
 
-You defeated all 7 machine lords, fusing biology and
+You defeated all 3 machine lords, fusing biology and
 machine into an exciting new chimera!! Now flowers can
 bloom from your mechanic limbs in the new LIVING world
 you've helped grow out of this once hollow and mechanical
@@ -254,37 +254,45 @@ def bioworld():
         """))
 
         # perform action based on user input
+        # regenerate machina and biomass
+        hp = randint(5, 13)
+        bm = randint(7, 13)
+        state["player"].bm += bm
+        state["player"].hp += hp
+        print("Your bm increased by {} and your hp by {}".format(bm, hp))
+        state["enemy"].ma += 10
         # player turn
         if choice == 1:
             if state["player"].bm >= 10:
-                print("You struck {} for {} hp".format(state["enemy"].name, 10))
-                state["enemy"].hp -= randint(10, 25)
+                strike = randint(10, 25)
+                print("You struck {} for {} hp".format(state["enemy"].name, strike))
+                state["enemy"].hp -= strike
                 state["player"].bm -= 10
         if choice == 3:
             if state["player"].bm >= 30 and state["enemy"].hp <= 15:
-                print("{} has been weakened, you infuse them with biomass!".format(state["enemy"].name))
+                print("{} has been weakened, you transform them with biomass!".format(state["enemy"].name))
                 state["player"].bm -= 30
                 state["enemy"].hp = 0
+            else:
+                print("Enemy HP was too high, transformation failed!!")
         # machine turn
-        hit = randint(0, 6)
+        hit = randint(3, state["enemy"].ma // 2)
         if choice == 2:
             if state["player"].bm >= 5:
                 state["player"].bm -= 5
-                hit -= randint(2, 4)
+                hit = randint(0, state["enemy"].ma // 4)
         print("{} attacks you, you lose {} hp".format(state["enemy"].name, hit))
         state["player"].hp -= hit
         state["enemy"].ma -= 15
         if state["enemy"].hp <= 0:
+            state["biomachines"] += 1
             print("You've overcome and transformed {}!!".format(state["enemy"].name))
             if len(enemies) > 0:
+                print("You've grown and become stronger!")
                 state["enemy"] = Enemy(*enemies.pop())
-                state["player"] = Player((13 + state["player"].hp) * 2, (13 + state["player"].bm) * 2)
+                state["player"] = Player(state["player"].hp * 2, state["player"].bm * 2)
         input()
 
-        # regenerate machina and biomass
-        state["player"].bm += 7
-        state["player"].hp += 4
-        state["enemy"].ma += 10
 
         # clear screen for new render
         clear()
