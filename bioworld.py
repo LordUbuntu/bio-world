@@ -30,7 +30,8 @@ ART = {
                ==========================
                     1   New Game
                     2   Help
-                    3   Quit
+                    3   Credits
+                    4   Quit
                ==========================
                             .
     """,
@@ -49,6 +50,29 @@ ART = {
 
     TO PLAY, just input the number corresponding to
     the available choices.
+    """,
+    "credits": r"""
+  ____ ____  _____ ____ ___ _____ ____
+ / ___|  _ \| ____|  _ \_ _|_   _/ ___|
+| |   | |_) |  _| | | | | |  | | \___ \
+| |___|  _ <| |___| |_| | |  | |  ___) |
+ \____|_| \_\_____|____/___| |_| |____/
+
+This game was made by me, Jacobus Burger from May 26 to
+May 28 in 2023 as part of the ASCII Game Jam 2023!
+
+I made the ASCII art by hand, though it's not much to
+look at.
+
+I wanted to thank the hosts of this game jam for the fun! And
+I wanted to give a special thanks to you for playing my
+first ASCII game!
+
+It may not be much, but better games may yet come! Life is growth!
+
+I really hope you enjoy this game, as basic as it is!
+
+Thank you.
     """,
     # ===== SCENES =====
     "start": r"""
@@ -241,8 +265,13 @@ def bioworld():
             print(ART["help"])
             input()
             clear()
-            # if quit, clear screen and terminate program
+            # if credits, show credits
         if choice == 3:
+            print(ART["credits"])
+            input()
+            clear()
+            # if quit, clear screen and terminate program
+        if choice == 4:
             end()
 
     # show start screen before game
