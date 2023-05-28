@@ -1,9 +1,4 @@
-# TODO:
-# - find a way to store game data
-# - implement gameplay
-# - implement ascii art
-# - make enemy class
-# - make player class
+from random import randint
 import os
 from sys import exit
 
@@ -76,7 +71,7 @@ machine world above.
          ___
    ...../ _ \..
  ..    / / | | ..
-.     | |  (_)   .
+.     | |  (o)   .
  ..  _| |_     ..
    ............
 
@@ -212,14 +207,12 @@ def win(condition):
         exit(ART["lose"])
 
 
-# NOTE:
-# - game consists of just boss battles (no other kind of scene)
-# - gameplay consists of fighting enemies until you have defeated (make bio of) 7 machines
 def bioworld():
     # beginning gamestate
+    enemies = [(70, 90, "picaso"), (50, 70, "amadeus"), (30, 50, "faust")]
     state = {
-        "player": Player(13, 3),
-        "enemy": Enemy(30, 50, "faust"),
+        "player": Player(13, 5),
+        "enemy": Enemy(*enemies.pop()),
         "biomachines": 0,
     }
     running = False
@@ -250,33 +243,56 @@ def bioworld():
     clear()
     # while in game
     while running:
-            # render game
+        # render game
         render_game(state)
-            # get user input
+
+        # get user input
         choice = int(input("""
         1 - attack   (10 biomass)
         2 - defend   (5  biomass)
         3 - biospore (30 biomass)
         """))
-                # perform action based on user input
+
+        # perform action based on user input
+        # player turn
         if choice == 1:
             if state["player"].bm >= 10:
-                # attack some amount of hp based on amount of biomass
-                pass
+                print("You struck {} for {} hp".format(state["enemy"].name, 10))
+                state["enemy"].hp -= randint(10, 25)
+                state["player"].bm -= 10
+        if choice == 3:
+            if state["player"].bm >= 30 and state["enemy"].hp <= 15:
+                print("{} has been weakened, you infuse them with biomass!".format(state["enemy"].name))
+                state["player"].bm -= 30
+                state["enemy"].hp = 0
+        # machine turn
+        hit = randint(0, 6)
         if choice == 2:
             if state["player"].bm >= 5:
-                # defend some amount of enemy attack based on amount of biomass
-                pass
-        if choice == 3:
-            if state["player"].bm >= 30:
-                # merge enemy robot with biomass to make biomachine
-                pass
-        # clear screen for next render
+                state["player"].bm -= 5
+                hit -= randint(2, 4)
+        print("{} attacks you, you lose {} hp".format(state["enemy"].name, hit))
+        state["player"].hp -= hit
+        state["enemy"].ma -= 15
+        if state["enemy"].hp <= 0:
+            print("You've overcome and transformed {}!!".format(state["enemy"].name))
+            if len(enemies) > 0:
+                state["enemy"] = Enemy(*enemies.pop())
+                state["player"] = Player((13 + state["player"].hp) * 2, (13 + state["player"].bm) * 2)
+        input()
+
+        # regenerate machina and biomass
+        state["player"].bm += 7
+        state["player"].hp += 4
+        state["enemy"].ma += 10
+
+        # clear screen for new render
         clear()
-        # win condition: turn the 7 machine lords into biomachine hybrids
+
+        # win condition: turn the 3 machine lords into biomachine hybrids
         if state["biomachines"] == 3:
             win(True)
-        # lose condition: lose the bio-virus/entity within you (health <= 0)
+        # lose condition: lose the life within you (health <= 0)
         if state["player"].hp <= 0:
             win(False)
 
