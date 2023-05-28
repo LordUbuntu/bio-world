@@ -104,6 +104,9 @@ YOU RESOLVE to bring the colours of life that have
 manifested inside of you to the world above you.
 YOU RESOLVE to paint the world above with life,
 to be the seed that lets life spread and bloom.
+
+DEFEAT THE THREE MACHINE LORDS ABOVE!
+
     """,
     "win": r"""
   ____ ___  _   _  ____ ____      _  _____ ____  _
@@ -139,15 +142,46 @@ decends upon you as you watch in apathy.
 Stay still, poor bot!
     """,
     # ===== ENEMIES =====
-    "enemy": """
-    \\\\\\       ///
+    "faust": r"""
+  ___
+ /    \
+|   |  \
+\  -+-  \
+ \  |    \
+  \       \
+   \  v v  \
+    \  =   /
+     \____/
 
-      --     --
-     >%%<   >%%<
-      --     --
+A machine made for 'medicine' that doesn't know life.
+    """,
+    "amadeus": r"""
+  ____________________________________________
+||____|\______________________________________
+||____|/__1___________________________________
+||___/|___0___________________________________
+||__(_|)______________________________________
+     '|
 
-      >=======<
-    """
+A machine made for 'music' that doesn't know song.
+    """,
+    "picaso": r"""
+
+KRUGKIDHN5QWYIDPMYQGY2LGMUQGS4ZAOJQXA5D
+VOJSS4ICBOJ2CA2LTEB2GQZJAO5QXSIDXMUQGK6
+DQMVZGSZLOMNSSA2LUFYQEC4TUEBUXGIDUNBSSA
+5DSMFXHGZTPOJWWS3THEBSXQ4DFOJUWK3TDMUQC
+4LROEBUW45DVNF2GS33OOMWCA53JNRWCYIDXNF2
+GQ33VOQQGC4TUFQQGEZJANBUWIZDFNYQGM4TPNU
+QHK4ZAMFXGIIDXMUQHO2LMNQQGEZJANRSWM5BAO
+5UXI2BANZXXI2DJNZTSAYTVOQQGCIHCQCMHIZLS
+NVUW433MN5TXSIDGN5ZCA4DSMFRXI2LDMFWCAZL
+OMRZ6FAEZEB3WQ2LDNAQHOZJAMZQWY43FNR4SAY
+
+3BNRWCA3DJMZSS4CQ=
+
+A machine made for 'art' that doesn't know beauty.
+    """,
 }
 
 
@@ -202,12 +236,11 @@ def bioworld():
             continue
             # if help, show help info
         if choice == 2:
-            clear()
             print(ART["help"])
             input()
+            clear()
             # if quit, clear screen and terminate program
         if choice == 3:
-            clear()
             end()
 
     # show start screen before game
@@ -241,7 +274,7 @@ def bioworld():
         # clear screen for next render
         clear()
         # win condition: turn the 7 machine lords into biomachine hybrids
-        if state["biomachines"] == 7:
+        if state["biomachines"] == 3:
             win(True)
         # lose condition: lose the bio-virus/entity within you (health <= 0)
         if state["player"].hp <= 0:
