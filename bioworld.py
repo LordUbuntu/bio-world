@@ -33,10 +33,29 @@ ART = {
 
                ==========================
                     1   New Game
-                    2   Load Game
+                    2   Help
                     3   Quit
                ==========================
                             .
+    """,
+    # lore dump and begin
+    "start": r"""
+
+    """,
+    "help": r"""
+     _   _ _____ _     ____
+    | | | | ____| |   |  _ \
+    | |_| |  _| | |   | |_) |
+    |  _  | |___| |___|  __/
+    |_| |_|_____|_____|_|
+
+    machina (ma) is machine essence.
+    biomass (bm) is life essence.
+
+    Your goal is to defeat the seven machine lords by
+    filling them with life essence to join your side.
+
+    TO PLAY, just input the number corresponding to the available choices.
     """,
     "win": r"""
   ____ ___  _   _  ____ ____      _  _____ ____  _
@@ -87,10 +106,6 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def render_menu():
-    print(ART["menu"])
-
-
 def render_game(state):
     # render player stats
     print('=' * 25)
@@ -118,53 +133,56 @@ def win(condition):
 # - game consists of just boss battles (no other kind of scene)
 # - gameplay consists of fighting enemies until you have defeated (make bio of) 7 machines
 def bioworld():
-    # begin gamestate
+    # beginning gamestate
     state = {
         "player": Player(13, 3),
         "enemy": Enemy(30, 50, "faust"),
         "biomachines": 0,
     }
-    running = True
-    # render menu
-    render_menu()
-    choice = int(input())  # get player choice for menu
-    clear()
-        # if quit, clear screen and terminate program
-    if choice == 3:
+    running = False
+    
+    # stay in menu mode until game starts
+    while not running:
+        # render menu
+        print(ART["menu"])
+        choice = int(input())  # get player choice for menu
         clear()
-        end()
-        # if load game
-    if choice == 2:
-            # load game state from file
-        # TODO: implement read_data(file)
-        with open("save.txt", 'r') as file:
-            state = read_data(file)
-        # if new game, start a new game
-    if choice == 1:
-        state = state
-            # while in game
+            # if new game, start a new game
+        if choice == 1:
+            running = True
+            continue
+            # if help, show help info
+        if choice == 2:
+            clear()
+            print(ART["help"])
+            input()
+            # if quit, clear screen and terminate program
+        if choice == 3:
+            clear()
+            end()
+
+    # while in game
     while running:
-                # render game
+            # render game
         render_game(state)
-                # get user input
+            # get user input
         choice = int(input("""
         1 - attack   (10 biomass)
         2 - defend   (5  biomass)
         3 - biospore (30 biomass)
         """))
-                    # perform action based on user input
-                    # NOTE: the assumption is that all actions in the game are combat choices
-        if choice == 3:
-            if state["player"].bm >= 30:
-                # merge enemy robot with biomass to make biomachine
+                # perform action based on user input
+        if choice == 1:
+            if state["player"].bm >= 10:
+                # attack some amount of hp based on amount of biomass
                 pass
         if choice == 2:
             if state["player"].bm >= 5:
                 # defend some amount of enemy attack based on amount of biomass
                 pass
-        if choice == 1:
-            if state["player"].bm >= 10:
-                # attack some amount of hp based on amount of biomass
+        if choice == 3:
+            if state["player"].bm >= 30:
+                # merge enemy robot with biomass to make biomachine
                 pass
         # clear screen for next render
         clear()
