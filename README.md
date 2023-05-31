@@ -8,18 +8,18 @@ Fight the machine-world and bring the wonder of a bio world to this mechanical o
 ## Features
 
 BIOWORLD includes
-- 3 interesting bosses
-- neat storyline
-- straightforward battle system
-
-Not much else, it's a simple game!
+- 3 intresting bosses
+- A captivating storyline
+- Strightforward gameplay
 
 ## Installation
 
-All you need to play the game is a Python 3 interpreter on your system. From there, simply run `python3 bioworld.py` and the game will go!
+All you need to play the game is a Python 3 interpreter on your system. From there, simply run `python3 bioworld.py` in a terminal and the game will go!
 
 ## Lessons Learned
 
-I should have begun with a design instead of figuring it out as I went.
-I did well to avoid scope-creep by keeping things simple and features limited.
-I learned how to better manage gamestate and the challenges of game balance.
+- Keeping a design journal and starting with a clearer design plan would make it easier to keep track of the project.
+- Keeping to a fixed scope of features that are very basic to start, and only adding more features after the base game is complete, worked out eally well.
+- Keeping features and gameplay simple for the prototype helped to keep the base game feeling polished and easier to develop/test.
+- Game balance can be a challenge and requires a lot of game testing.
+- Avoiding premature optimizations (like object heirarchies and other complications) can save a lot of time and pain, especially for simple games where those design details are overkill.
