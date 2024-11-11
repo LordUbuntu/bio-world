@@ -1,3 +1,5 @@
+![bioworld.png](https://github.com/LordUbuntu/bio-world/blob/main/bioworld.png)
+
 # BIO WORLD
 
 Made by Jacobus Burger (2023) for the ASCII Game Jam 2023.
