@@ -25,3 +25,7 @@ All you need to play the game is a Python 3 interpreter on your system. From the
 I should have begun with a design instead of figuring it out as I went.
 I did well to avoid scope-creep by keeping things simple and features limited.
 I learned how to better manage gamestate and the challenges of game balance.
+
+## Future Plans
+
+I'll archive this because it's from the jam itself. I will come back to this game concept in the near future and flesh it out into a fuller game
